@@ -51,16 +51,18 @@ public class OneRecord {
             try {
                 String line ="";
                 String []check;
+                String eachLine;
                 BufferedReader b = new BufferedReader(new FileReader(file));
                 while ((line = b.readLine()) != null) {
                     check = line.split(",");
+                    System.out.println(line);
                     //won't add the wanted record to the list
                     if (!(check[0].equals(username))) {
-                        arr.add(Arrays.toString(check));
+                        arr.add(line);
                     }
                 }
                 this.addToFile(arr, file);
-
+                b.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

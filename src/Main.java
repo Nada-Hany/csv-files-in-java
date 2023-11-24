@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import pac1.*;
 
@@ -36,37 +37,6 @@ public class Main {
         }
         record.deleteRecord("hossam", file);
 
-
-//        boolean isExists = record.existInDatabase("sara");
-//        System.out.println(record.getRowNumber());
-//        if(isExists)
-//            System.out.println(record.getUsername());
-//        if(isExists){
-//            int rowNumber = 0;
-//            while ((line = b.readLine()) != null){
-//                row = line.split(",");
-//                rowNumber++;
-//                if(rowNumber == record.getRowNumber())
-//                    System.out.println(row[0]);
-//            }
-//        }
-//        else {
-//            System.out.println("record not found");
-//        }
-//        ArrayList<String>arr = new ArrayList<String>();
-//        arr.add("hossam,123,hossam@gmail,30-3");
-//        arr.add("manal,456,manal@gmail,9-4");
-//        try {
-//            BufferedWriter b2 = new BufferedWriter(new FileWriter(file));
-//            for(String index:arr){
-//                b2.write(index);
-//                b2.newLine();
-//            }
-//            b2.close();
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
 
     }
 }
