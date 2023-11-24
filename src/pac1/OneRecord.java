@@ -1,27 +1,12 @@
 package pac1;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class OneRecord {
 
     //so no one can change the index[row no.] of a record in the file.
     private int rowNumber;
     private String[] row;
-    protected void addToFile(ArrayList<String> arr, File file)
-    {
-        try {
-            BufferedWriter b = new BufferedWriter(new FileWriter(file));
-            for(String index:arr){
-                b.write(index);
-                b.newLine();
-            }
-            b.close();
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public boolean existInDatabase (String username, File file)
     {
 
@@ -41,7 +26,21 @@ public class OneRecord {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-            return false;
+        return false;
+    }
+    public void addToFile(ArrayList<String> arr, File file)
+    {
+        try {
+            BufferedWriter b = new BufferedWriter(new FileWriter(file));
+            for(String index:arr){
+                b.write(index);
+                b.newLine();
+            }
+            b.close();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void deleteRecord(String username, File file)
     {
@@ -68,17 +67,33 @@ public class OneRecord {
             }
         }
     }
-    public int getRowNumber(){
-        return rowNumber;
-    }
-    public String getUsername(){
-        return row[0];
-    }
-    public String getPassword(){
-        return row[1];
-    }
-    public String getEmail(){
-        return row[2];
-    }
 
+    public void changeCell(String username, String oldCell,String newCell, File file){
+        boolean x = existInDatabase(username, file);
+        if(x){
+            try{
+                BufferedReader b = new BufferedReader(new FileReader(file));
+                String line = "";
+                String []row;
+                ArrayList<String> arrayList = new ArrayList<String>();
+                while ((line = b.readLine()) != null){
+                    row = line.split(",");
+                    if(row[0].equals(username)){
+                        for (int index=0; index<row.length; index++){
+                            if(row[index].equals(username)) {
+                                row[index] = newCell;
+                                line = String.join(",",row);
+                            }
+                        }
+                    }
+                    arrayList.add(line);
+                }
+                addToFile(arrayList,file);
+                b.close();
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
