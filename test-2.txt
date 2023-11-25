@@ -1,7 +1,6 @@
 manal,456,manal@,2-9	
 nada,123,nada@gmail,23-2-2023
 ahmad,456,ahmad@gmail,30-5-2023
-sara,789,sara@gmail,4-8-2023
 salwa,789,sara@gmail,4-8-2023
 ahlaaannn,789,sara@gmail,4-8-2023
 ismail,789,sara@gmail,4-8-2023
