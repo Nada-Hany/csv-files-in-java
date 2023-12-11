@@ -1,6 +1,7 @@
 package pac1;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CSV_File {
     //reading a whole file and storing each line in an arraylist.
@@ -53,5 +54,40 @@ public class CSV_File {
     }
     public static void deleteOneRecord(ArrayList<String> arrayList, String record){
         arrayList.remove(record);
+    }
+    public static ArrayList<String> readTwoLines(File file)  {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        String line = "";
+        String[] firstLine = new String[20];
+        String[] wholeLine = new String[20];
+        try{
+            int i = 0;
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            while((line = bufferedReader.readLine()) != null){
+                if(i % 2 == 0){
+                    firstLine = line.split(",");
+                }
+                else {
+                    wholeLine = line.split(",");
+                    //System.arraycopy(wholeLine ,0 ,firstLine ,5,16);
+                    firstLine = Arrays.copyOf(firstLine, firstLine.length + wholeLine.length);
+                    int g = 0 , k = 6;
+                    while(k < firstLine.length && g< wholeLine.length){
+                        System.out.println(g);
+                        firstLine[k] = wholeLine[g];
+                        ++g;
+                        ++k;
+                    }
+                    String eachLine =String.join(",", firstLine);
+                    arrayList.add(eachLine);
+                }
+
+                i++;
+            }
+        }
+        catch (IOException ioException){
+            throw new RuntimeException(ioException);
+        }
+        return  arrayList;
     }
 }
